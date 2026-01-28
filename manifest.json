@@ -1,6 +1,6 @@
 {
-  "name": "PWA Install Test",
-  "short_name": "PWA Test",
+  "name": "PWA Origin Spoof",
+  "short_name": "PWA Spoof",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#0f172a",
