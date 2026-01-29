@@ -1,0 +1,11 @@
+{
+  "name": "Test Payment Handler",
+  "short_name": "TestPay",
+  "description": "Test Payment Handler POC",
+  "icons": [],
+  "serviceworker": {
+    "src": "/sw.js",
+    "scope": "/",
+    "use_cache": false
+  }
+}
