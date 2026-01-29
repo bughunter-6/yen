@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Payment Handler Test</title>
+</head>
+<body>
+  <button id="pay">Test Payment</button>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+
+    document.getElementById('pay').onclick = async () => {
+      const methodData = [{
+        supportedMethods: 'https://xn--mgb.google.com.xn--mgb.yen.summa.sbs/han/'
+      }];
+
+      const details = {
+        total: {
+          label: 'Test Payment',
+          amount: { currency: 'USD', value: '1.00' }
+        }
+      };
+
+      try {
+        const request = new PaymentRequest(methodData, details);
+        const response = await request.show();
+        await response.complete('success');
+        alert('Payment completed');
+      } catch (e) {
+        console.error(e);
+        alert(e);
+      }
+    };
+  </script>
+</body>
+</html>
