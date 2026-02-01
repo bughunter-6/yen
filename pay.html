@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Card Autofill Test</title>
+</head>
+
+<body>
+<h2>Payment Test Form</h2>
+
+<form method="post" action="#">
+  <label>Name on Card</label><br>
+  <input type="text" name="cc-name" autocomplete="cc-name"><br><br>
+
+  <label>Card Number</label><br>
+  <input type="text" name="cc-number" autocomplete="cc-number" inputmode="numeric"><br><br>
+
+  <label>Expiry Month</label><br>
+  <input type="text" name="cc-exp-month" autocomplete="cc-exp-month"><br><br>
+
+  <label>Expiry Year</label><br>
+  <input type="text" name="cc-exp-year" autocomplete="cc-exp-year"><br><br>
+
+  <label>CVV</label><br>
+  <input type="password" name="cc-csc" autocomplete="cc-csc"><br><br>
+
+  <button type="submit">Pay Now</button>
+</form>
+
+</body>
+</html>
