@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nested Iframe POC</title>
+  <meta charset="utf-8">
+  <title>Storage Access Frame</title>
 </head>
 <body>
-  <h2>Iframe Test Case</h2>
-  <a href="https://barathstalin6.github.io/summa/storage.html">Iframe Website Link </a>
-  <iframe src="https://barathstalin6.github.io/summa/storage.html" width="700"
-  height="350"
-  sandbox="allow-scripts allow-same-origin allow-storage-access-by-user-activation"> </iframe>
+
+<h3>Iframe — Storage Access API Test</h3>
+<button id="btn">Request Storage Access</button>
+<pre id="log"></pre>
+
+<script>
+const logEl = document.getElementById("log");
+const log = m => logEl.textContent += m + "\n";
+
+// try setting a cookie first (third-party context)
+document.cookie = "thirdparty_test=1; SameSite=None; Secure";
+log("Cookie write attempted");
+
+document.getElementById("btn").onclick = async () => {
+  if (!document.hasStorageAccess) {
+    log("❌ Storage Access API not supported");
+    return;
+  }
+
+  const has = await document.hasStorageAccess();
+  log("hasStorageAccess(): " + has);
+
+  if (!has && document.requestStorageAccess) {
+    try {
+      await document.requestStorageAccess();
+      log("✅ Storage access granted");
+
+      document.cookie = "thirdparty_after=1; SameSite=None; Secure";
+      log("Cookie after grant: " + document.cookie);
+
+    } catch (e) {
+      log("❌ Access denied: " + e);
+    }
+  }
+};
+</script>
+
 </body>
 </html>
